@@ -10,7 +10,7 @@ import org.bukkit.configuration.file.FileConfiguration;
  * @author Impelon
  *
  */
-public interface FileConfigurationLoader {
+public interface IFileConfigurationLoader {
 	
 	/**
 	 * <p> Loads a FileConfiguration from the given file. </p>
