@@ -6,6 +6,13 @@ import org.bukkit.util.Vector;
 
 import de.impelon.geotools.Axis;
 
+/**
+ * <p> Interface that specifies the methods of any Implementation of IArea. </p>
+ * <p> Used to keep track of a defined area of Locations. </p>
+ * 
+ * @author Impelon
+ *
+ */
 public interface IArea {
 		
 	/**
