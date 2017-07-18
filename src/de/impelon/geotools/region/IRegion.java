@@ -9,6 +9,14 @@ import org.bukkit.util.Vector;
 import de.impelon.geotools.RegionFormat;
 import de.impelon.geotools.area.IArea;
 
+/**
+ * <p> Interface that specifies the methods of any Implementation of IRegion. </p>
+ * <p> Regions define a finite space (in contrast to Area) and are therefore {@linkplain Iterable}. </p>
+ * <p> Used to keep track of a defined space of Locations. </p>
+ * 
+ * @author Impelon
+ *
+ */
 public abstract interface IRegion extends IArea, Iterable<Vector> {
 	
 	/**

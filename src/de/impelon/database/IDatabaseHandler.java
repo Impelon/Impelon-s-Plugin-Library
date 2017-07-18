@@ -4,6 +4,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * <p> Used for managing SQL-requests to a database. </p>
+ * 
+ * @author Impelon
+ *
+ */
 public interface IDatabaseHandler {
 	
 	/**

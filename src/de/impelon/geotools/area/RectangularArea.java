@@ -6,6 +6,12 @@ import org.bukkit.util.Vector;
 
 import de.impelon.geotools.Axis;
 
+/**
+ * <p> Implementation of IArea for a rectangular area. </p>
+ * 
+ * @author Impelon
+ *
+ */
 public class RectangularArea implements IArea {
 	
 	protected final Vector startPos;

@@ -14,7 +14,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DatabaseHandler implements IDatabaseHandler {
+/**
+ * <p> Used for managing SQL-requests to a database. </p>
+ * <p> Is able to connect with different JDBC-Drivers. </p>
+ * 
+ * @author Impelon
+ *
+ */
+public class JDBCDatabaseHandler implements IDatabaseHandler {
 
 	protected final String url, user, password, driverClasspath;
 	protected Connection connection = null;
@@ -28,7 +35,7 @@ public class DatabaseHandler implements IDatabaseHandler {
 	 * @param user the database's username
 	 * @param password the user's password
 	 */
-	public DatabaseHandler(String host, String port, String database, String user, String password) {
+	public JDBCDatabaseHandler(String host, String port, String database, String user, String password) {
 		this("jdbc:mysql://" + host + ":" + port + "/" + database, "com.mysql.jdbc.Driver", user, password);
 
 	}
@@ -41,7 +48,7 @@ public class DatabaseHandler implements IDatabaseHandler {
 	 * @param user the database's username
 	 * @param password the user's password
 	 */
-	public DatabaseHandler(String url, String driverClasspath, String user, String password) {
+	public JDBCDatabaseHandler(String url, String driverClasspath, String user, String password) {
 		this.url = url;
 		this.driverClasspath = driverClasspath;
 		this.user = user;

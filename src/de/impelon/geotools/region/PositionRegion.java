@@ -17,6 +17,13 @@ import de.impelon.geotools.Axis;
 import de.impelon.geotools.RegionFormat;
 import de.impelon.geotools.area.IArea;
 
+/**
+ * <p> Implementation of IRegion for a free-style region. </p>
+ * <p> Currently uses a {@linkplain HashSet} to store Positions (as {@linkplain Vector}). </p>
+ * 
+ * @author Impelon
+ *
+ */
 public class PositionRegion implements IRegion {
 	
 	protected final World world;
