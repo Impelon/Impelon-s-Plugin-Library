@@ -14,6 +14,12 @@ import de.impelon.geotools.Axis;
 import de.impelon.geotools.RegionFormat;
 import de.impelon.geotools.area.RectangularArea;
 
+/**
+ * <p> Implementation of IRegion for a cuboid region. </p>
+ * 
+ * @author Impelon
+ *
+ */
 public class CuboidRegion extends RectangularArea implements IRegion {
 	
 	/**
