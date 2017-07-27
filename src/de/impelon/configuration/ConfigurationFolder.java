@@ -207,5 +207,15 @@ public class ConfigurationFolder {
 	public void registerConfig(FileConfiguration config, String name) {
 		this.configurationCache.put(name, config);
 	}
+	
+	/**
+	 * <p> Clears the cache storing the Configurations. </p>
+	 * 
+	 * @param config FileConfiguration to register
+	 * @param name name of the FileConfiguration (on disk)
+	 */
+	public void clearCache() {
+		this.configurationCache.clear();
+	}
 
 }
