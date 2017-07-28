@@ -36,7 +36,7 @@ public abstract interface IRegion extends IArea, Iterable<Vector> {
 	/**
 	 * <p> Returns a modified version of this Region. </p>
 	 * 
-	 * @param format Format of the modifiedregion
+	 * @param format Format of the modified region
 	 * @return The Iterator<Location>
 	 */
 	public abstract IRegion getModifiedRegion(RegionFormat format);

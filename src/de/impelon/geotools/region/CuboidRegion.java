@@ -161,11 +161,11 @@ public class CuboidRegion extends RectangularArea implements IRegion {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IRegion getSubRegion(RegionFormat format) {
+	public IRegion getModifiedRegion(RegionFormat format) {
 		switch (format) {
 		case HOLLOW:
 			PositionRegion region = new PositionRegion(this);
-			region.remove(this.getSubRegion(RegionFormat.ENCLOSED));
+			region.remove(this.getModifiedRegion(RegionFormat.ENCLOSED));
 			return region;
 		case WIREFRAME:
 			HashSet<Vector> set = new HashSet<Vector>();

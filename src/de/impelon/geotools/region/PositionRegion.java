@@ -346,7 +346,7 @@ public class PositionRegion implements IRegion {
 	 * @return The volume
 	 */
 	protected long calculateBlockVolume() {
-		this.blockVolume = (long) this.getSubRegion(RegionFormat.FLOORED).getVolume();
+		this.blockVolume = (long) this.getModifiedRegion(RegionFormat.FLOORED).getVolume();
 		return this.blockVolume;
 	}
 	
@@ -365,7 +365,7 @@ public class PositionRegion implements IRegion {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IRegion getSubRegion(RegionFormat format) {
+	public IRegion getModifiedRegion(RegionFormat format) {
 		switch (format) {
 		case ENCLOSED:
 			HashSet<Vector> enclosed = new HashSet<Vector>();
@@ -401,12 +401,12 @@ public class PositionRegion implements IRegion {
 			return new PositionRegion(this.getWorld(), surrounding);
 		case WIREFRAME:
 			PositionRegion wireframe = new PositionRegion(this.getWorld(), this.positions);
-			IRegion inside = this.getSubRegion(RegionFormat.ENCLOSED).getSubRegion(RegionFormat.SURROUNDING);
+			IRegion inside = this.getModifiedRegion(RegionFormat.ENCLOSED).getModifiedRegion(RegionFormat.SURROUNDING);
 			wireframe.remove(inside);
 			return wireframe;
 		case HOLLOW:
 			PositionRegion hollow = new PositionRegion(this.getWorld(), this.positions);
-			hollow.remove(this.getSubRegion(RegionFormat.ENCLOSED));
+			hollow.remove(this.getModifiedRegion(RegionFormat.ENCLOSED));
 			return hollow;
 		case FULL:
 		default:
