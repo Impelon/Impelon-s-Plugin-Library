@@ -34,12 +34,12 @@ public abstract interface IRegion extends IArea, Iterable<Vector> {
 	public abstract long getBlockVolume();
 	
 	/**
-	 * <p> Returns a sub-region of this Region. </p>
+	 * <p> Returns a modified version of this Region. </p>
 	 * 
-	 * @param format Format of the sub-region
+	 * @param format Format of the modifiedregion
 	 * @return The Iterator<Location>
 	 */
-	public abstract IRegion getSubRegion(RegionFormat format);
+	public abstract IRegion getModifiedRegion(RegionFormat format);
 	
 	/**
 	 * <p> Returns a Iterator over the Locations within this Region. </p>
