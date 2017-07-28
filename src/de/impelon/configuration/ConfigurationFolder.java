@@ -1,8 +1,11 @@
 package de.impelon.configuration;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 
@@ -13,7 +16,7 @@ import org.bukkit.plugin.Plugin;
  * <p> Used for managing multiple configurations as objects of {@linkplain FileConfiguration} inside a single folder. </p>
  * 
  * @author Impelon
- *
+ * 
  */
 public class ConfigurationFolder {
 	
@@ -91,6 +94,21 @@ public class ConfigurationFolder {
 	public FileConfiguration getConfig(String name, IFileConfigurationLoader loader) {
 		this.reloadConfig(name, loader);
 		return this.configurationCache.get(name);
+	}
+	
+	/**
+	 * <p> Returns a list of all filenames in the folder. </p>
+	 * 
+	 * @return The list of all filenames
+	 */
+	public List<String> getDirectoryFilenames() {
+		return Arrays.asList(this.rootDirectory.list(new FilenameFilter() {
+			
+			@Override
+			public boolean accept(File dir, String name) {
+				return new File(dir, name).isFile();
+			}
+		}));
 	}
 	
 	/**
@@ -195,6 +213,67 @@ public class ConfigurationFolder {
 		boolean sucessful = false;
 		for (Entry<String, FileConfiguration> e : this.configurationCache.entrySet())
 			sucessful &= this.saveConfig(e.getValue(), e.getKey());
+		return sucessful;
+	}
+	
+	/**
+	 * <p> Deletes the FileConfiguration affiliated with that name. </p>
+	 * <p> This will only work on cached configs. </p>
+	 * 
+	 * @param name name of the FileConfiguration (on disk)
+	 * @return Whether the action was successful
+	 */
+	public boolean deleteConfig(String name) {
+		FileConfiguration config = this.configurationCache.get(name);
+		if (config == null)
+			return false;
+		return this.deleteConfig(config, name);
+	}
+	
+	/**
+	 * <p> Deletes the FileConfiguration with its affiliated name. </p>
+	 * <p> This will only work on cached configs. </p>
+	 * 
+	 * @param config cached FileConfiguration to delete
+	 * @return Whether the action was successful
+	 */
+	public boolean deleteConfig(FileConfiguration config) {
+		String name = null;
+		for (Entry<String, FileConfiguration> e : this.configurationCache.entrySet())
+			if (e.getValue().equals(config))
+				name = e.getKey();
+		if (name == null)
+			return false;
+		return this.deleteConfig(config, name);
+	}
+	
+	/**
+	 * <p> Deletes the FileConfiguration with the given name. </p>
+	 * 
+	 * @param config FileConfiguration to delete
+	 * @param name name of the FileConfiguration (on disk)
+	 * @return Whether the action was successful
+	 */
+	public boolean deleteConfig(FileConfiguration config, String name) {
+		try {
+			config.set("", null);
+			new File(this.rootDirectory, name).delete();
+			return true;
+		} catch (SecurityException ex) {
+			this.plugin.getLogger().log(Level.SEVERE, "Could not delete config (" + config + ") from " + name, ex);
+		}
+		return false;
+	}
+	
+	/**
+	 * <p> Deletes all FileConfigurations in the cache. </p>
+	 * 
+	 * @return Whether the action was successful
+	 */
+	public boolean deleteAllCached() {
+		boolean sucessful = false;
+		for (Entry<String, FileConfiguration> e : this.configurationCache.entrySet())
+			sucessful &= this.deleteConfig(e.getValue(), e.getKey());
 		return sucessful;
 	}
 	
