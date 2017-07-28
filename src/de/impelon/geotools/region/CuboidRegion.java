@@ -31,8 +31,9 @@ public class CuboidRegion extends RectangularArea implements IRegion {
 	 * @throws IllegalArgumentException if the two Locations given are in different {@linkplain Worlds}
 	 */
 	public CuboidRegion(Location locationA, Location locationB, boolean floor) throws IllegalArgumentException {
-		this(floor ? new Location(locationA.getWorld(), locationA.getBlockX(), locationA.getBlockY(), locationA.getBlockZ()) : locationA,
-				floor ? new Location(locationB.getWorld(), locationB.getBlockX(), locationB.getBlockY(), locationB.getBlockZ()) : locationB);
+		this(locationA.toVector(), locationB.toVector(), locationA.getWorld(), floor);
+		if (locationA.getWorld() != locationB.getWorld())
+			throw new IllegalArgumentException("Cannot add Locations of different Worlds to an Region");
 	}
 	
 	/**
@@ -43,9 +44,20 @@ public class CuboidRegion extends RectangularArea implements IRegion {
 	 * @throws IllegalArgumentException if the two Locations given are in different {@linkplain Worlds}
 	 */
 	public CuboidRegion(Location locationA, Location locationB) throws IllegalArgumentException {
-		this(locationA.toVector(), locationB.toVector(), locationA.getWorld());
-		if (locationA.getWorld() != locationB.getWorld())
-			throw new IllegalArgumentException("Cannot add Locations of different Worlds to an Region");
+		this(locationA, locationB, false);
+	}
+	
+	/**
+	 * <p> Create a CuboidRegion from two given Vectors (corners) and a {@linkplain World}. </p>
+	 * 
+	 * @param start determines first corner of the CuboidRegion
+	 * @param end determines second corner of the CuboidRegion
+	 * @param floor If true the corners will be converted to Block-Positions (aka. floored)
+	 * @param world the {@linkplain World} this CuboidRegion is in
+	 */
+	public CuboidRegion(Vector start, Vector end, World world, boolean floor) {
+		this(floor ? new Vector(start.getBlockX(), start.getBlockY(), start.getBlockZ()) : start,
+				floor ? new Vector(end.getBlockX(), end.getBlockY(), end.getBlockZ()) : end, world);
 	}
 	
 	/**
