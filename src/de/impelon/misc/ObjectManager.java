@@ -39,7 +39,8 @@ public class ObjectManager<O> {
 	 * <p> Unregisters all Objects. </p>
 	 */
     public void unregisterAll() {
-    	this.registered.clear();
+    	for (Object key : this.registered.keySet())
+    		this.unregister(key);
     }
     
     /**
