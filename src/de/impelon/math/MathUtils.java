@@ -44,7 +44,6 @@ public class MathUtils {
         try {
             return Double.parseDouble(jse.eval(expression).toString());
         } catch (ScriptException e) {
-        	e.printStackTrace();
             return 0;
         }
     }
