@@ -8,7 +8,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 /**
- * <p> Used for various math related operations. </p>
+ * <p> Used for various math-related operations. </p>
  * 
  * @author Impelon
  * 
