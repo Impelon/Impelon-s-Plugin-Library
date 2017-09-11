@@ -1,4 +1,4 @@
-package de.impelon.math;
+package de.impelon.misc;
 
 import java.util.Map;
 import java.util.Map.Entry;

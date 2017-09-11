@@ -1,6 +1,7 @@
 package de.impelon.misc;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -39,7 +40,7 @@ public class ObjectManager<O> {
 	 * <p> Unregisters all Objects. </p>
 	 */
     public void unregisterAll() {
-    	for (Object key : this.registered.keySet())
+    	for (Object key : new HashSet<Object>(this.registered.keySet()))
     		this.unregister(key);
     }
     
