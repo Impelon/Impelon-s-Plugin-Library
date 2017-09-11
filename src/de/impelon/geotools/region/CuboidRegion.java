@@ -205,7 +205,7 @@ public class CuboidRegion extends RectangularArea implements IRegion {
 			private long x = 0;
 			private long y = 0;
 			private long z = 0;
-			private final Vector direction = endPos.clone().subtract(startPos).divide(new Vector(getBlockLength(Axis.X) - 1, getBlockLength(Axis.Y) - 1, getBlockLength(Axis.Z) - 1));
+			private final Vector direction = endPos.clone().subtract(startPos).divide(new Vector(Math.max(getBlockLength(Axis.X) - 1, 1), Math.max(getBlockLength(Axis.Y) - 1, 1), Math.max(getBlockLength(Axis.Z) - 1, 1)));
 
 			@Override
 			public boolean hasNext() {
