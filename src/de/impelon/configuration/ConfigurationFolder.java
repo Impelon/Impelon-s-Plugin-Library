@@ -102,13 +102,14 @@ public class ConfigurationFolder {
 	 * @return The list of all filenames
 	 */
 	public List<String> getDirectoryFilenames() {
-		return Arrays.asList(this.rootDirectory.list(new FilenameFilter() {
+		String[] names = this.rootDirectory.list(new FilenameFilter() {
 			
 			@Override
 			public boolean accept(File dir, String name) {
 				return new File(dir, name).isFile();
 			}
-		}));
+		});
+		return Arrays.asList(names != null ? names : new String[0]);
 	}
 	
 	/**
@@ -256,8 +257,10 @@ public class ConfigurationFolder {
 	 */
 	public boolean deleteConfig(FileConfiguration config, String name) {
 		try {
-			config.set("", null);
+			for(String key : config.getKeys(false))
+				config.set(key, null);
 			new File(this.rootDirectory, name).delete();
+			this.configurationCache.remove(name, config);
 			return true;
 		} catch (SecurityException ex) {
 			this.plugin.getLogger().log(Level.SEVERE, "Could not delete config (" + config + ") from " + name, ex);
