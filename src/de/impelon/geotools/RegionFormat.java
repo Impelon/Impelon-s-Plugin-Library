@@ -1,7 +1,7 @@
 package de.impelon.geotools;
 
 /**
- * <p> Enumeration for referencing different sub-regions. </p>
+ * <p> Enumeration for referencing different modified regions. </p>
  * 
  * @author Impelon
  *
