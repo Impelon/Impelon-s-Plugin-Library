@@ -10,7 +10,6 @@ import java.util.Map;
  * @author Impelon
  *
  */
-
 public class ObjectManager<O> {
 	
     private HashMap<Object, O> registered = new HashMap<Object, O>();
