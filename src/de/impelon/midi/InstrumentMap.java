@@ -1,0 +1,228 @@
+package de.impelon.midi;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.bukkit.Sound;
+import org.bukkit.configuration.ConfigurationSection;
+
+/**
+ * <p> Used for mapping objects of {@linkplain Sound} to IDs used by MIDI. </p>
+ * 
+ * @author Impelon
+ *
+ */
+public class InstrumentMap {
+
+	protected final Map<Integer, Sound> instruments;
+	protected Sound defaultInstrument = Sound.BLOCK_NOTE_HARP;
+
+	public static final HashMap<Integer, Sound> HARDCODED_INSTRUMENTS = new HashMap<Integer, Sound>();
+	static {
+		HARDCODED_INSTRUMENTS.put(0, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(1, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(2, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(3, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(4, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(5, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(6, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(7, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(8, Sound.ENTITY_BLAZE_HURT);
+		HARDCODED_INSTRUMENTS.put(9, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+		HARDCODED_INSTRUMENTS.put(10, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+		HARDCODED_INSTRUMENTS.put(11, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+		HARDCODED_INSTRUMENTS.put(12, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+		HARDCODED_INSTRUMENTS.put(13, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(14, Sound.BLOCK_ANVIL_PLACE);
+		HARDCODED_INSTRUMENTS.put(15, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(16, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(17, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+		HARDCODED_INSTRUMENTS.put(18, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(19, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(20, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(21, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(22, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(23, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(24, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(25, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(26, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(27, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(28, Sound.BLOCK_NOTE_SNARE);
+		HARDCODED_INSTRUMENTS.put(29, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(30, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(31, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(32, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(33, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(34, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(35, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(36, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(37, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(38, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(39, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(40, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(41, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(42, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(43, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(44, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(45, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(46, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(47, Sound.BLOCK_LAVA_POP);
+		HARDCODED_INSTRUMENTS.put(48, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(49, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(50, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(51, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(52, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(53, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(54, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(55, Sound.BLOCK_TRIPWIRE_DETACH);
+		HARDCODED_INSTRUMENTS.put(56, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(57, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(58, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(59, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(60, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(61, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(62, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(63, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(64, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(65, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(66, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(67, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(68, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(69, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(70, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(71, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(72, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(73, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(74, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(75, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(76, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(77, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(78, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(79, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(80, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(81, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(82, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(83, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(84, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(85, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(86, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(87, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(88, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+		HARDCODED_INSTRUMENTS.put(89, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(90, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(91, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(92, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+		HARDCODED_INSTRUMENTS.put(93, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(94, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(95, Sound.ENTITY_DONKEY_DEATH);
+		HARDCODED_INSTRUMENTS.put(96, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(97, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(98, Sound.BLOCK_ANVIL_PLACE);
+		HARDCODED_INSTRUMENTS.put(99, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(100, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(101, Sound.BLOCK_NOTE_HARP);
+		HARDCODED_INSTRUMENTS.put(102, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(103, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(104, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(105, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(106, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(107, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(108, Sound.ENTITY_CHICKEN_EGG);
+		HARDCODED_INSTRUMENTS.put(109, Sound.ENTITY_GHAST_WARN);
+		HARDCODED_INSTRUMENTS.put(110, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(111, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(112, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+		HARDCODED_INSTRUMENTS.put(113, Sound.ENTITY_ITEM_PICKUP);
+		HARDCODED_INSTRUMENTS.put(114, Sound.BLOCK_NOTE_PLING);
+		HARDCODED_INSTRUMENTS.put(115, Sound.BLOCK_NOTE_HAT);
+		HARDCODED_INSTRUMENTS.put(116, Sound.BLOCK_NOTE_SNARE);
+		HARDCODED_INSTRUMENTS.put(117, Sound.ENTITY_ITEM_PICKUP);
+		HARDCODED_INSTRUMENTS.put(118, Sound.BLOCK_NOTE_SNARE);
+		HARDCODED_INSTRUMENTS.put(119, Sound.WEATHER_RAIN_ABOVE);
+		HARDCODED_INSTRUMENTS.put(120, Sound.BLOCK_ENDERCHEST_CLOSE);
+		HARDCODED_INSTRUMENTS.put(121, Sound.BLOCK_NOTE_BASS);
+		HARDCODED_INSTRUMENTS.put(122, Sound.WEATHER_RAIN_ABOVE);
+		HARDCODED_INSTRUMENTS.put(123, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(124, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED);
+		HARDCODED_INSTRUMENTS.put(125, Sound.WEATHER_RAIN_ABOVE);
+		HARDCODED_INSTRUMENTS.put(126, Sound.WEATHER_RAIN_ABOVE);
+		HARDCODED_INSTRUMENTS.put(127, Sound.ENTITY_LIGHTNING_IMPACT);
+	}
+	public static final InstrumentMap DEFAULT_MAP = new InstrumentMap(HARDCODED_INSTRUMENTS);
+	
+	/**
+	 * <p> Creates a new empty InstrumentMap. </p>
+	 */
+	public InstrumentMap() {
+		this(new HashMap<Integer, Sound>());
+	}
+	
+	/**
+	 * <p> Creates a new InstrumentMap with the given Map. </p>
+	 */
+	public InstrumentMap(Map<Integer, Sound> instruments) {
+		this.instruments = instruments;
+	}
+
+	/**
+	 * <p> Loads the mapping from a {@linkplain ConfigurationSection}. </p>
+	 * 
+	 * @param section ConfigurationSection to load from
+	 */
+	protected void loadInstrumentsFrom(ConfigurationSection section) {
+		if (section != null)
+			for (Entry<String, Object> entry : section.getValues(false).entrySet())
+				this.instruments.put(Integer.parseInt(entry.getKey()), Sound.valueOf(entry.getValue().toString()));
+	}
+
+	/**
+	 * <p> Saves the mapping to a {@linkplain ConfigurationSection}. </p>
+	 * 
+	 * @param section ConfigurationSection to save to
+	 */
+	protected void saveInstrumentsTo(ConfigurationSection section) {
+		for (Entry<Integer, Sound> entry : this.instruments.entrySet())
+			section.set(entry.getKey().toString(), entry.getValue().toString());
+	}
+
+	/**
+	 * <p> Returns the Sound mapped to that ID. If no such Sound exists, the default instrument is returned. </p>
+	 * 
+	 * @param ID ID of the Sound
+	 * @return The Sound
+	 */
+	public Sound getInstrument(int ID) {
+		Sound instrument = this.instruments.get(ID);
+		return (instrument != null ? instrument : this.getDefaultInstrument());
+	}
+
+	/**
+	 * <p> Set the Sound mapped to the given ID. </p>
+	 * 
+	 * @param ID ID of the Sound
+	 * @param sound the Sound to set
+	 */
+	public void setInstrument(int ID, Sound sound) {
+		this.instruments.put(ID, sound);
+	}
+
+	/**
+	 * <p> Returns the default Sound mapped to non-existing IDs. </p>
+	 * 
+	 * @return The default Sound
+	 */
+	public Sound getDefaultInstrument() {
+		return this.defaultInstrument;
+	}
+
+	/**
+	 * <p> Set the default Sound mapped to non-existing IDs. </p>
+	 * 
+	 * @param sound the Sound to set
+	 */
+	public void setDefaultInstrument(Sound sound) {
+		this.defaultInstrument = sound;
+	}
+
+}
